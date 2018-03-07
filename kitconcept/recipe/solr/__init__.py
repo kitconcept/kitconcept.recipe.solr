@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import distutils
 import os
 import urllib2
 from hexagonit.recipe.download import Recipe as DownloadRecipe
@@ -38,10 +39,10 @@ class Recipe(object):
 
         # Set default options
         self.options.setdefault('port', '8983')
-        self.options.setdefault('config', 'solr_config.xml')
-        # self.options['config'] = os.path.join(
-        #   self.buildout['buildout']['directory'],
-        #   self.options['jobconfig'])
+        self.options['config'] = os.path.join(
+          self.buildout['buildout']['directory'],
+          self.options['solr-config']
+        )
 
         # Figure out default output file
         parts_directory = os.path.join(
@@ -63,6 +64,10 @@ class Recipe(object):
     def solr_version(self):
         return int(self.options['solr-version'])
 
+    @property
+    def solr_config(self):
+        return int(self.options['solr-config'])
+
     def download_solr(self):
         directory = os.path.join(
             self.buildout['buildout']['parts-directory'],
@@ -79,9 +84,21 @@ class Recipe(object):
     def build_solr(self):
         print("Build Solr")
 
+    def create_solr_core(self):
+        print("Create Solr core")
+        import pdb; pdb.set_trace()
+        solr_core_name = 'woo'
+        solr_cores_directory = os.path.join(
+            self.buildout['buildout']['parts-directory'],
+            'solr/server/solr',
+            solr_core_name
+        )
+        distutils.dir_util.copy_tree(os.path.join('config'), solr_cores_directory)
+
     def install(self):
         self.download_solr()
         self.build_solr()
+        self.create_solr_core()
 
         # Return files that were created by the recipe. The buildout
         # will remove all returned files upon reinstall.

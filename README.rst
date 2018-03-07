@@ -54,3 +54,7 @@ Running the buildout gives us::
     >>> full_path = os.path.join(current_path, 'parts/solr/bin/solr')
     >>> os.path.exists(full_path)
     True
+
+    >>> full_path = os.path.join(current_path, 'parts/solr/server/solr/woo')
+    >>> os.path.exists(full_path)
+    True

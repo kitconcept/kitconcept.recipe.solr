@@ -1,9 +1,17 @@
 Introduction
 ============
 
+.. image:: https://travis-ci.org/kitconcept/kitconcept.recipe.solr.svg?branch=master
+    :target: https://travis-ci.org/kitconcept/kitconcept.recipe.solr
+
+|
+
+.. image:: https://raw.githubusercontent.com/kitconcept/kitconcept.recipe.solr/master/kitconcept.png
+   :alt: kitconcept
+   :target: https://kitconcept.com/
+
+
 Buildout recipe for Solr.
-This zc.buildout recipe downloads, builds and configures a Solr instance
-to be used with Plone.
 
 Supported options
 =================
@@ -14,13 +22,13 @@ solr_version (default: latest version)
     Major Solr version
 
 src
-    Source of the Solr download.
+    Source of the Solr download (e.g. "http://mirror.netcologne.de/apache.org/lucene/solr/7.2.1/solr-7.2.1.tgz").
 
 port (default: 8983)
     Solr port
 
 solr-config
-    Path to a Solr configuration directory.
+    Path to a Solr configuration directory that contains a "core.properties" file and a "data" and "conf" directory.
 
 
 Example usage

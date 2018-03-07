@@ -67,7 +67,7 @@ class Recipe(object):
 
     @property
     def solr_config(self):
-        return int(self.options['solr-config'])
+        return str(self.options['solr-config'])
 
     def download_solr(self):
         directory = os.path.join(

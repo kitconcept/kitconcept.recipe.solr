@@ -93,7 +93,10 @@ class Recipe(object):
             'solr/server/solr',
             solr_core_name
         )
-        distutils.dir_util.copy_tree(os.path.join('config'), solr_cores_directory)
+        distutils.dir_util.copy_tree(
+            os.path.join(self.buildout['buildout']['directory'], 'config'),
+            solr_cores_directory
+        )
 
     def install(self):
         self.install_scripts()

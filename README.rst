@@ -38,12 +38,12 @@ We'll start by creating a buildout that uses the recipe::
     ... solr-version = %(src)s
     ... src = %(src)s
     ... port = %(port)s
-    ... config = %(config)s
+    ... solr-config = %(solr-config)s
     ... """ % {
     ...     'solr-version': '7',
     ...     'src' : 'http://mirror.netcologne.de/apache.org/lucene/solr/7.2.1/solr-7.2.1.tgz',
     ...     'port' : '8983',
-    ...     'config': 'solr.xml',
+    ...     'solr-config': 'config',
     ... })
 
 Running the buildout gives us::

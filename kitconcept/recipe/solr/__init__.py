@@ -1,9 +1,19 @@
 # -*- coding: utf-8 -*-
 import os
+import urllib2
+from hexagonit.recipe.download import Recipe as DownloadRecipe
 from shutil import copyfile
 
 import zc.recipe.egg
 from zc.buildout import UserError
+
+
+DEFAULT_DOWNLOAD_URLS = {
+    7: 'http://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.tgz',
+    6: 'http://archive.apache.org/dist/lucene/solr/7.2.1/solr-6.6.3.tgz',
+    5: 'http://archive.apache.org/dist/lucene/solr/5.1.0/solr-5.1.0.tgz',
+    4: 'http://archive.apache.org/dist/lucene/solr/4.10.4/solr-4.10.4.tgz',
+}
 
 
 class Recipe(object):
@@ -17,7 +27,7 @@ class Recipe(object):
 
         # Check required options
         required_options = [
-            'src',
+            'solr-version',
         ]
         for required_option in required_options:
             if required_option not in self.options:
@@ -49,8 +59,22 @@ class Recipe(object):
             )
         ]
 
+    @property
+    def solr_version(self):
+        return int(self.options['solr-version'])
+
     def download_solr(self):
-        print("Download Solr")
+        directory = os.path.join(
+            self.buildout['buildout']['parts-directory'],
+            self.name
+        )
+
+        if not os.path.exists(directory):
+            DownloadRecipe(self.buildout, self.name, {
+                'url': DEFAULT_DOWNLOAD_URLS[self.solr_version],
+                'strip-top-level-dir': 'true',
+                'destination': directory,
+            }).install()
 
     def build_solr(self):
         print("Build Solr")

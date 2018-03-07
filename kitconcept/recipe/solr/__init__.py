@@ -86,7 +86,6 @@ class Recipe(object):
 
     def create_solr_core(self):
         print("Create Solr core")
-        import pdb; pdb.set_trace()
         solr_core_name = 'woo'
         solr_cores_directory = os.path.join(
             self.buildout['buildout']['parts-directory'],

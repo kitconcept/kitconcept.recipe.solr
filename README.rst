@@ -1,7 +1,9 @@
 Introduction
 ============
 
-Buildout recipe to build Solr.
+Buildout recipe for Solr.
+This zc.buildout recipe downloads, builds and configures a Solr instance
+to be used with Plone.
 
 Supported options
 =================
@@ -17,8 +19,8 @@ src
 port (default: 8983)
     Solr port
 
-config
-    Custom Solr config XML file
+solr-config
+    Path to a Solr configuration directory.
 
 
 Example usage

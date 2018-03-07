@@ -23,7 +23,7 @@ def setUp(test):
     zc.buildout.testing.install_develop('kitconcept.recipe.solr', test)
 
     # Install any other recipes that should be available in the tests
-    #zc.buildout.testing.install('collective.recipe.foobar', test)
+    zc.buildout.testing.install('hexagonit.recipe.download', test)
     zc.buildout.testing.install('zc.recipe.egg', test)
     zc.buildout.testing.install('collective.recipe.template', test)
 

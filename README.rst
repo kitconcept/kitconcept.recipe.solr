@@ -49,6 +49,7 @@ We'll start by creating a buildout that uses the recipe::
 Running the buildout gives us::
 
     >>> buildout_output_lower = system(buildout).lower()
+    >>> print(buildout_output_lower)
     >>> "installing solr" in buildout_output_lower
     True
     >>> import os

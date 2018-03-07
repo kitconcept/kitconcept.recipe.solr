@@ -49,3 +49,8 @@ Running the buildout gives us::
     >>> buildout_output_lower = system(buildout).lower()
     >>> "installing solr" in buildout_output_lower
     True
+    >>> import os
+    >>> current_path = os.path.dirname(os.path.realpath(__file__))
+    >>> full_path = os.path.join(current_path, 'parts/solr/bin/solr')
+    >>> os.path.exists(full_path)
+    True

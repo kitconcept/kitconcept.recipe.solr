@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import distutils
 import os
+import subprocess
 import urllib2
 from hexagonit.recipe.download import Recipe as DownloadRecipe
 from shutil import copyfile
@@ -95,6 +96,7 @@ class Recipe(object):
         distutils.dir_util.copy_tree(os.path.join('config'), solr_cores_directory)
 
     def install(self):
+        self.install_scripts()
         self.download_solr()
         self.build_solr()
         self.create_solr_core()
@@ -106,30 +108,71 @@ class Recipe(object):
     def update(self):
         self.install()
 
+    def install_scripts(self):
+        """Install Solr scripts in the bin directory.
+        """
+        zc.buildout.easy_install.scripts(
+            [(
+                'solr',
+                'kitconcept.recipe.solr',
+                'solr'
+            )],
+            self.egg.working_set()[1],
+            self.buildout[self.buildout['buildout']['python']]['executable'],
+            self.buildout['buildout']['bin-directory'],
+            arguments=self.options.__repr__(),
+        )
 
+        zc.buildout.easy_install.scripts(
+            [(
+                'solr-start',
+                'kitconcept.recipe.solr',
+                'solr_start'
+            )],
+            self.egg.working_set()[1],
+            self.buildout[self.buildout['buildout']['python']]['executable'],
+            self.buildout['buildout']['bin-directory'],
+            arguments=self.options.__repr__(),
+        )
 
-def _write_configuration(config, filename):
-    # Backup existing config if it exists
-    if os.path.exists(filename):
-        print("Create Jenkins job backup at %s.bak" % filename)
-        copyfile(filename, "%s.bak" % filename)
-    # Write config to file
-    print("Write job %s" % filename)
-    fileObj = open(filename, "w")
-    fileObj.write(config)
-    fileObj.close()
+        zc.buildout.easy_install.scripts(
+            [(
+                'solr-stop',
+                'kitconcept.recipe.solr',
+                'solr_stop'
+            )],
+            self.egg.working_set()[1],
+            self.buildout[self.buildout['buildout']['python']]['executable'],
+            self.buildout['buildout']['bin-directory'],
+            arguments=self.options.__repr__(),
+        )
 
+        zc.buildout.easy_install.scripts(
+            [(
+                'solr-status',
+                'kitconcept.recipe.solr',
+                'solr_status'
+            )],
+            self.egg.working_set()[1],
+            self.buildout[self.buildout['buildout']['python']]['executable'],
+            self.buildout['buildout']['bin-directory'],
+            arguments=self.options.__repr__(),
+        )
 
-def trigger_build_jenkins(options):
-    """Trigger a build for a job on Jenkins CI server.
-    """
-    jenkins_server = _connect(options)
-    jenkins_jobname = options['jobname']
-    if jenkins_server.job_exists(jenkins_jobname):
-        print(
-            "Build Jenkins job %s" %
-            jenkins_server.get_job_info(jenkins_jobname)['url'])
-        try:
-            jenkins_server.build_job(jenkins_jobname)
-        except jenkins.JenkinsException, e:
-            print e
+def solr_start(options):
+    return subprocess.call([
+        'parts/solr/bin/solr',
+        'start'
+    ])
+
+def solr_stop(options):
+    return subprocess.call([
+        'parts/solr/bin/solr',
+        'stop'
+    ])
+
+def solr_status(options):
+    return subprocess.call([
+        'parts/solr/bin/solr',
+        'status'
+    ])

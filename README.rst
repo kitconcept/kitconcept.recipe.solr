@@ -30,6 +30,8 @@ port (default: 8983)
 solr-config
     Path to a Solr configuration directory that contains a "core.properties" file and a "data" and "conf" directory.
 
+solr-core-name (default: plone)
+    Name of the Solr core. Default is 'plone'.
 
 Example usage
 =============
@@ -47,11 +49,13 @@ We'll start by creating a buildout that uses the recipe::
     ... src = %(src)s
     ... port = %(port)s
     ... solr-config = %(solr-config)s
+    ... solr-core-name = %(solr-core-name)s
     ... """ % {
     ...     'solr-version': 7,
     ...     'src' : 'http://mirror.netcologne.de/apache.org/lucene/solr/7.2.1/solr-7.2.1.tgz',
     ...     'port' : '8983',
     ...     'solr-config': 'config',
+    ...     'solr-core-name': 'solr-core-plone',
     ... })
 
 Running the buildout gives us::

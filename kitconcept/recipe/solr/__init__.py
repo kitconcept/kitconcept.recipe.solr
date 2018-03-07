@@ -40,6 +40,7 @@ class Recipe(object):
 
         # Set default options
         self.options.setdefault('port', '8983')
+        self.options.setdefault('solr-core-name', 'plone')
         self.options['solr-config'] = os.path.join(
           self.buildout['buildout']['directory'],
           self.options['solr-config']

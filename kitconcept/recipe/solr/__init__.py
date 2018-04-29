@@ -81,7 +81,7 @@ class Recipe(object):
 
     def create_solr_core(self):
         print("Create Solr core")
-        solr_core_name = 'woo'
+        solr_core_name = 'plone'
         solr_cores_directory = os.path.join(
             self.buildout['buildout']['parts-directory'],
             'solr/server/solr',

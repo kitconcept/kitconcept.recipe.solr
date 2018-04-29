@@ -14,7 +14,7 @@ before_install:
   - virtualenv .
   - bin/pip install -r requirements.txt
 install:
-  - sed -ie "s#7.2.1#$SOLR_VERSION#" buildout.cfg
+  - sed -ie "s#7.3.0#$SOLR_VERSION#" buildout.cfg
   - bin/buildout
 script:
   - bin/test

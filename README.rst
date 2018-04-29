@@ -19,7 +19,7 @@ Supported options
 The recipe supports the following options:
 
 src (required)
-    Source of the Solr download (e.g. "http://mirror.netcologne.de/apache.org/lucene/solr/7.2.1/solr-7.2.1.tgz").
+    Source of the Solr download (e.g. "http://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.tgz").
 
 port (default: 8983)
     Solr port

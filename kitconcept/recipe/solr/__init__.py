@@ -2,9 +2,7 @@
 import distutils
 import os
 import subprocess
-import urllib2
 from hexagonit.recipe.download import Recipe as DownloadRecipe
-from shutil import copyfile
 
 import zc.recipe.egg
 from zc.buildout import UserError
@@ -35,8 +33,10 @@ class Recipe(object):
             if required_option not in self.options:
                 raise UserError(
                     'Please provide a "%s" in your Solr section "%s"' % (
-                    required_option,
-                    self.options['recipe']))
+                        required_option,
+                        self.options['recipe']
+                    )
+                )
 
         # Set default options
         self.options.setdefault('port', '8983')
@@ -55,7 +55,8 @@ class Recipe(object):
             os.makedirs(parts_directory)
 
         # What files are tracked by this recipe
-        self.files = [parts_directory,
+        self.files = [
+            parts_directory,
             os.path.join(
                 self.buildout['buildout']['bin-directory'],
                 self.name
@@ -163,17 +164,20 @@ class Recipe(object):
             arguments=self.options.__repr__(),
         )
 
+
 def solr_start(options):
     return subprocess.call([
         'parts/solr/bin/solr',
         'start'
     ])
 
+
 def solr_stop(options):
     return subprocess.call([
         'parts/solr/bin/solr',
         'stop'
     ])
+
 
 def solr_status(options):
     return subprocess.call([

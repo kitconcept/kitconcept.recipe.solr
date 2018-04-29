@@ -64,6 +64,6 @@ Running the buildout gives us::
     >>> os.path.exists(full_path)
     True
 
-    >>> full_path = os.path.join(current_path, 'parts/solr/server/solr/woo')
+    >>> full_path = os.path.join(current_path, 'parts/solr/server/solr/plone')
     >>> os.path.exists(full_path)
     True

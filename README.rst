@@ -18,10 +18,7 @@ Supported options
 
 The recipe supports the following options:
 
-solr_version (default: latest version)
-    Major Solr version
-
-src
+src (required)
     Source of the Solr download (e.g. "http://mirror.netcologne.de/apache.org/lucene/solr/7.2.1/solr-7.2.1.tgz").
 
 port (default: 8983)
@@ -45,14 +42,12 @@ We'll start by creating a buildout that uses the recipe::
     ...
     ... [solr]
     ... recipe = kitconcept.recipe.solr
-    ... solr-version = %(solr-version)s
     ... src = %(src)s
     ... port = %(port)s
     ... solr-config = %(solr-config)s
     ... solr-core-name = %(solr-core-name)s
     ... """ % {
-    ...     'solr-version': 7,
-    ...     'src' : 'http://mirror.netcologne.de/apache.org/lucene/solr/7.2.1/solr-7.2.1.tgz',
+    ...     'src' : 'http://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.tgz',
     ...     'port' : '8983',
     ...     'solr-config': 'config',
     ...     'solr-core-name': 'solr-core-plone',

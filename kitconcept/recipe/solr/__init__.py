@@ -27,7 +27,7 @@ class Recipe(object):
 
         # Check required options
         required_options = [
-            'solr-version',
+            'src',
         ]
         for required_option in required_options:
             if required_option not in self.options:
@@ -64,8 +64,8 @@ class Recipe(object):
         ]
 
     @property
-    def solr_version(self):
-        return int(self.options['solr-version'])
+    def src(self):
+        return str(self.options['src'])
 
     @property
     def solr_config(self):
@@ -79,7 +79,7 @@ class Recipe(object):
 
         if not os.path.exists(directory):
             DownloadRecipe(self.buildout, self.name, {
-                'url': DEFAULT_DOWNLOAD_URLS[self.solr_version],
+                'url': self.src,
                 'strip-top-level-dir': 'true',
                 'destination': directory,
             }).install()

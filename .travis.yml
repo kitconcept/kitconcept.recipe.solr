@@ -8,6 +8,7 @@ cache:
 env:
   matrix:
     - SOLR_VERSION=7.2.1
+    - SOLR_VERSION=7.3.0
 before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - virtualenv .

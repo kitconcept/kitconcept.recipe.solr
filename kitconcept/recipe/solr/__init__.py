@@ -88,7 +88,10 @@ class Recipe(object):
             solr_core_name
         )
         print("rm {}".format(solr_cores_directory))
-        distutils.dir_util.remove_tree(solr_cores_directory)
+        try:
+            distutils.dir_util.remove_tree(solr_cores_directory)
+        except OSError:
+            pass
         print("copy {}".format(
             os.path.join(self.buildout['buildout']
                          ['directory'], self.solr_config)))

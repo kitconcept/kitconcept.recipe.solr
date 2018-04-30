@@ -34,8 +34,8 @@ class Recipe(object):
         self.options.setdefault('port', '8983')
         self.options.setdefault('solr-core-name', 'plone')
         self.options['solr-config'] = os.path.join(
-          self.buildout['buildout']['directory'],
-          self.options['solr-config']
+            self.buildout['buildout']['directory'],
+            self.options['solr-config']
         )
 
         # Figure out default output file
@@ -87,8 +87,14 @@ class Recipe(object):
             'solr/server/solr',
             solr_core_name
         )
+        print("rm {}".format(solr_cores_directory))
+        distutils.dir_util.remove_tree(solr_cores_directory)
+        print("copy {}".format(
+            os.path.join(self.buildout['buildout']
+                         ['directory'], self.solr_config)))
         distutils.dir_util.copy_tree(
-            os.path.join(self.buildout['buildout']['directory'], 'config'),
+            os.path.join(self.buildout['buildout']
+                         ['directory'], self.solr_config),
             solr_cores_directory
         )
 
@@ -134,6 +140,30 @@ class Recipe(object):
 
         zc.buildout.easy_install.scripts(
             [(
+                'solr-restart',
+                'kitconcept.recipe.solr',
+                'solr_restart'
+            )],
+            self.egg.working_set()[1],
+            self.buildout[self.buildout['buildout']['python']]['executable'],
+            self.buildout['buildout']['bin-directory'],
+            arguments=self.options.__repr__(),
+        )
+
+        zc.buildout.easy_install.scripts(
+            [(
+                'solr-foreground',
+                'kitconcept.recipe.solr',
+                'solr_foreground'
+            )],
+            self.egg.working_set()[1],
+            self.buildout[self.buildout['buildout']['python']]['executable'],
+            self.buildout['buildout']['bin-directory'],
+            arguments=self.options.__repr__(),
+        )
+
+        zc.buildout.easy_install.scripts(
+            [(
                 'solr-stop',
                 'kitconcept.recipe.solr',
                 'solr_stop'
@@ -157,10 +187,31 @@ class Recipe(object):
         )
 
 
+def solr(options):
+    return subprocess.call([
+        'parts/solr/bin/solr',
+    ])
+
+
 def solr_start(options):
     return subprocess.call([
         'parts/solr/bin/solr',
         'start'
+    ])
+
+
+def solr_foreground(options):
+    return subprocess.call([
+        'parts/solr/bin/solr',
+        'start',
+        '-f'
+    ])
+
+
+def solr_restart(options):
+    return subprocess.call([
+        'parts/solr/bin/solr',
+        'restart'
     ])
 
 

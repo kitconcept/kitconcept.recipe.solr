@@ -191,42 +191,42 @@ class Recipe(object):
 
 
 def solr(options):
-    return subprocess.call([
-        'parts/solr/bin/solr',
-    ])
+    subprocess.call(
+        ['./solr'],
+        cwd=options.get('bin-directory') + '/../parts/solr/bin/'
+    )
 
 
 def solr_start(options):
-    return subprocess.call([
-        'parts/solr/bin/solr',
-        'start'
-    ])
+    subprocess.call(
+        ['./solr', 'start'],
+        cwd=options.get('bin-directory') + '/../parts/solr/bin/'
+    )
 
 
 def solr_foreground(options):
-    return subprocess.call([
-        'parts/solr/bin/solr',
-        'start',
-        '-f'
-    ])
+    subprocess.call(
+        ['./solr', 'start', '-f'],
+        cwd=options.get('bin-directory') + '/../parts/solr/bin/'
+    )
 
 
 def solr_restart(options):
-    return subprocess.call([
-        'parts/solr/bin/solr',
-        'restart'
-    ])
+    subprocess.call(
+        ['./solr', 'restart'],
+        cwd=options.get('bin-directory') + '/../parts/solr/bin/'
+    )
 
 
 def solr_stop(options):
-    return subprocess.call([
-        'parts/solr/bin/solr',
-        'stop'
-    ])
+    subprocess.call(
+        ['./solr', 'stop'],
+        cwd=options.get('bin-directory') + '/../parts/solr/bin/'
+    )
 
 
 def solr_status(options):
-    return subprocess.call([
-        'parts/solr/bin/solr',
-        'status'
-    ])
+    subprocess.call(
+        ['./solr', 'status'],
+        cwd=options.get('bin-directory') + '/../parts/solr/bin/'
+    )

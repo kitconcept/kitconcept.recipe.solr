@@ -68,16 +68,12 @@ class Recipe(object):
             self.buildout['buildout']['parts-directory'],
             self.name
         )
-
-        if not os.path.exists(directory):
-            DownloadRecipe(self.buildout, self.name, {
-                'url': self.src,
-                'strip-top-level-dir': 'true',
-                'destination': directory,
-            }).install()
-
-    def build_solr(self):
-        print("Build Solr")
+        DownloadRecipe(self.buildout, self.name, {
+            'url': self.src,
+            'strip-top-level-dir': 'true',
+            'destination': directory,
+            'ignore-existing': 'true',
+        }).install()
 
     def create_solr_core(self):
         print("Create Solr core")
@@ -104,7 +100,6 @@ class Recipe(object):
     def install(self):
         self.install_scripts()
         self.download_solr()
-        self.build_solr()
         self.create_solr_core()
 
         # Return files that were created by the recipe. The buildout

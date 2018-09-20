@@ -18,4 +18,5 @@ install:
   - sed -ie "s#solr-7.3.0#solr-$SOLR_VERSION#" buildout.cfg
   - bin/buildout
 script:
+  - bin/code-analysis
   - bin/test

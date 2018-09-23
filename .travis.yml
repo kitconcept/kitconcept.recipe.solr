@@ -7,6 +7,9 @@ cache:
     - $HOME/buildout-cache
 env:
   matrix:
+    - SOLR_VERSION=4.10.4
+    - SOLR_VERSION=5.2.1
+    - SOLR_VERSION=6.6.5
     - SOLR_VERSION=7.2.1
     - SOLR_VERSION=7.3.0
     - SOLR_VERSION=7.4.0

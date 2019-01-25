@@ -17,20 +17,20 @@ long_description = (
     read('README.rst')
     + '\n' +
     'Detailed Documentation\n'
-    '**********************\n'
+    '======================\n'
     + '\n' +
     'Contributors\n'
-    '************\n'
+    '============\n'
     + '\n' +
     read('CONTRIBUTORS.txt')
     + '\n' +
     'Change history\n'
-    '**************\n'
+    '==============\n'
     + '\n' +
     read('CHANGES.txt')
     + '\n' +
     'Download\n'
-    '********\n')
+    '========\n')
 
 entry_point = 'kitconcept.recipe.solr:Recipe'
 entry_points = {

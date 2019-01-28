@@ -13,6 +13,8 @@ env:
     - SOLR_VERSION=7.2.1
     - SOLR_VERSION=7.3.0
     - SOLR_VERSION=7.4.0
+    - SOLR_VERSION=7.5.0
+    - SOLR_VERSION=7.6.0
 before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - virtualenv .

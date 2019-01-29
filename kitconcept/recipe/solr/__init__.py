@@ -112,77 +112,27 @@ class Recipe(object):
     def install_scripts(self):
         """Install Solr scripts in the bin directory.
         """
-        zc.buildout.easy_install.scripts(
-            [(
-                'solr',
-                'kitconcept.recipe.solr',
-                'solr'
-            )],
-            self.egg.working_set()[1],
-            self.buildout[self.buildout['buildout']['python']]['executable'],
-            self.buildout['buildout']['bin-directory'],
-            arguments=self.options.__repr__(),
+        script_names = (
+            'solr',
+            'solr-start',
+            'solr-restart',
+            'solr-foreground',
+            'solr-stop',
+            'solr-status',
         )
 
-        zc.buildout.easy_install.scripts(
-            [(
-                'solr-start',
-                'kitconcept.recipe.solr',
-                'solr_start'
-            )],
-            self.egg.working_set()[1],
-            self.buildout[self.buildout['buildout']['python']]['executable'],
-            self.buildout['buildout']['bin-directory'],
-            arguments=self.options.__repr__(),
-        )
-
-        zc.buildout.easy_install.scripts(
-            [(
-                'solr-restart',
-                'kitconcept.recipe.solr',
-                'solr_restart'
-            )],
-            self.egg.working_set()[1],
-            self.buildout[self.buildout['buildout']['python']]['executable'],
-            self.buildout['buildout']['bin-directory'],
-            arguments=self.options.__repr__(),
-        )
-
-        zc.buildout.easy_install.scripts(
-            [(
-                'solr-foreground',
-                'kitconcept.recipe.solr',
-                'solr_foreground'
-            )],
-            self.egg.working_set()[1],
-            self.buildout[self.buildout['buildout']['python']]['executable'],
-            self.buildout['buildout']['bin-directory'],
-            arguments=self.options.__repr__(),
-        )
-
-        zc.buildout.easy_install.scripts(
-            [(
-                'solr-stop',
-                'kitconcept.recipe.solr',
-                'solr_stop'
-            )],
-            self.egg.working_set()[1],
-            self.buildout[self.buildout['buildout']['python']]['executable'],
-            self.buildout['buildout']['bin-directory'],
-            arguments=self.options.__repr__(),
-        )
-
-        zc.buildout.easy_install.scripts(
-            [(
-                'solr-status',
-                'kitconcept.recipe.solr',
-                'solr_status'
-            )],
-            self.egg.working_set()[1],
-            self.buildout[self.buildout['buildout']['python']]['executable'],
-            self.buildout['buildout']['bin-directory'],
-            arguments=self.options.__repr__(),
-        )
+        for name in script_names:
+            zc.buildout.easy_install.scripts(
+                [(
+                    name,
+                    'kitconcept.recipe.solr',
+                    name.replace('-', '_')
+                )],
+                self.egg.working_set()[1],
+                self.buildout[self.buildout['buildout']['python']]['executable'],
+                self.buildout['buildout']['bin-directory'],
+                arguments=self.options.__repr__(),
+            )
 
 
 def solr(options):

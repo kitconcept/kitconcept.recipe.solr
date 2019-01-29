@@ -1,0 +1,11 @@
+include *.png
+include *.py
+include *.txt
+include Makefile
+include buildout.cfg
+recursive-include config *.properties
+recursive-include config *.txt
+recursive-include config *.xml
+recursive-include docs *.GPL
+recursive-include docs *.ZPL
+recursive-include docs *.txt

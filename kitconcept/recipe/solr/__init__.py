@@ -144,7 +144,7 @@ def solr(options):
 
 def solr_start(options):
     subprocess.call(
-        ['./solr', 'start'],
+        ['./solr', 'start', '-p', options['port'], ],
         cwd=options.get('bin-directory') + '/../parts/solr/bin/'
     )
 

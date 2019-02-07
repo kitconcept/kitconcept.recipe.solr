@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import distutils
 import os
+import signal
 import subprocess
 from hexagonit.recipe.download import Recipe as DownloadRecipe
 
@@ -150,10 +151,28 @@ def solr_start(options):
 
 
 def solr_foreground(options):
-    subprocess.call(
+    """Start a solr process in foreground mode (the -f parameter)
+
+    Control the process that gets swpaned and terminate it whenever the process
+    that started it is terminated as well.
+    """
+    def exit_handler(sig, frame):
+        filepath = os.sep.join([
+            options.get('bin-directory'),
+            'solr-{0}.pid'.format(options.get('port'))
+        ])
+        with open(filepath) as pidfile:
+            pid = pidfile.read().strip()
+        os.kill(pid, signal.SIGTERM)
+
+    signal.signal(signal.SIGINT, exit_handler)
+    signal.signal(signal.SIGTERM, exit_handler)
+
+    process = subprocess.Popen(
         ['./solr', 'start', '-f'],
         cwd=options.get('bin-directory') + '/../parts/solr/bin/'
     )
+    return os.waitpid(process.pid, 0)
 
 
 def solr_restart(options):

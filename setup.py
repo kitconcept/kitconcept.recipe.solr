@@ -51,12 +51,16 @@ setup(
     # Get more strings from
     # http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
+        'Development Status :: 3 - Alpha',
         'Framework :: Buildout',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
     ],
     keywords='plone buildout solr',
-    author='kitconcept Gmbh',
+    author='kitconcept GmbH',
     author_email='info@kitconcept.com',
     url='https://github.com/kitconcept/kitconcept.recipe.solr',
     license='gpl',

@@ -50,7 +50,7 @@ We'll start by creating a minimal buildout that uses the recipe::
     ...     'src' : 'http://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.tgz',
     ... })
 
-The only required attribute is `src`that contains a URL of the Solr tgz file.
+The only required attribute is `src` that contains a URL of the Solr tgz file.
 
 Running the buildout gives us::
 

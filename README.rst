@@ -33,6 +33,44 @@ solr-core-name (default: plone)
 Example usage
 =============
 
+Minimal Buildout
+----------------
+
+We'll start by creating a minimal buildout that uses the recipe::
+
+    >>> write('buildout.cfg',
+    ... """
+    ... [buildout]
+    ... parts = solr
+    ...
+    ... [solr]
+    ... recipe = kitconcept.recipe.solr
+    ... src = %(src)s
+    ... """ % {
+    ...     'src' : 'http://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.tgz',
+    ... })
+
+The only required attribute is `src`that contains a URL of the Solr tgz file.
+
+Running the buildout gives us::
+
+    >>> buildout_output_lower = system(buildout).lower()
+    >>> "installing solr" in buildout_output_lower
+    True
+    >>> import os
+    >>> current_path = os.path.dirname(os.path.realpath(__file__))
+    >>> full_path = os.path.join(current_path, 'parts/solr/bin/solr')
+    >>> os.path.exists(full_path)
+    True
+
+    >>> full_path = os.path.join(current_path, 'parts/solr/server/solr/plone')
+    >>> os.path.exists(full_path)
+    True
+
+
+Complete Buildout
+-----------------
+
 We'll start by creating a buildout that uses the recipe::
 
     >>> write('buildout.cfg',

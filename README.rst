@@ -19,7 +19,7 @@ Supported options
 The recipe supports the following options:
 
 src (required)
-    Source of the Solr download (e.g. "http://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.tgz").
+    Source of the Solr download (e.g. "http://archive.apache.org/dist/lucene/solr/7.7.2/solr-7.7.2.zip").
 
 port (default: 8983)
     Solr port
@@ -47,7 +47,7 @@ We'll start by creating a minimal buildout that uses the recipe::
     ... recipe = kitconcept.recipe.solr
     ... src = %(src)s
     ... """ % {
-    ...     'src' : 'http://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.tgz',
+    ...     'src' : 'http://archive.apache.org/dist/lucene/solr/7.7.2/solr-7.7.2.zip',
     ... })
 
 The only required attribute is `src` that contains a URL of the Solr tgz file.
@@ -85,7 +85,7 @@ We'll start by creating a buildout that uses the recipe::
     ... solr-config = %(solr-config)s
     ... solr-core-name = %(solr-core-name)s
     ... """ % {
-    ...     'src' : 'http://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.tgz',
+    ...     'src' : 'http://archive.apache.org/dist/lucene/solr/7.7.2/solr-7.7.2.zip',
     ...     'port' : '8983',
     ...     'solr-config': 'config',
     ...     'solr-core-name': 'solr-core-plone',

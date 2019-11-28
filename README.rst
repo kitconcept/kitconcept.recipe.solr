@@ -46,8 +46,10 @@ We'll start by creating a minimal buildout that uses the recipe::
     ... [solr]
     ... recipe = kitconcept.recipe.solr
     ... src = %(src)s
+    ... solr-config = %(solr-config)s
     ... """ % {
     ...     'src' : 'http://archive.apache.org/dist/lucene/solr/7.7.2/solr-7.7.2.zip',
+    ...     'solr-config' : 'config',
     ... })
 
 The only required attribute is `src` that contains a URL of the Solr tgz file.

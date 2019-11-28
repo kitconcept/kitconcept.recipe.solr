@@ -57,6 +57,7 @@ The only required attribute is `src` that contains a URL of the Solr tgz file.
 Running the buildout gives us::
 
     >>> buildout_output_lower = system(buildout).lower()
+    >>> print(buildout_output_lower)
     >>> "installing solr" in buildout_output_lower
     True
     >>> import os

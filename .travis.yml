@@ -1,5 +1,5 @@
 language: python
-python: "2.7"
+python: "2.7.15"
 sudo: required
 cache:
   pip: true
@@ -26,5 +26,5 @@ install:
   - sed -ie "s#solr-7.4.0#solr-$SOLR_VERSION#" buildout.cfg
   - bin/buildout
 script:
-  - bin/code-analysis
+  #  - bin/code-analysis
   - bin/test

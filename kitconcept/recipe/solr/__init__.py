@@ -139,8 +139,8 @@ def solr_start(options):
         'start',
         '-p',
         options['port'],
-    ],
-                    cwd=options.get('bin-directory') + '/../parts/solr/bin/')
+        ],
+        cwd=options.get('bin-directory') + '/../parts/solr/bin/')
 
 
 def solr_foreground(options):
@@ -162,8 +162,13 @@ def solr_foreground(options):
     signal.signal(signal.SIGINT, exit_handler)
     signal.signal(signal.SIGTERM, exit_handler)
 
-    process = subprocess.Popen(
-        ['./solr', 'start', '-f'],
+    process = subprocess.Popen([
+        './solr',
+        'start',
+        '-f',
+        '-p',
+        options['port'],
+        ],
         cwd=options.get('bin-directory') + '/../parts/solr/bin/')
     return os.waitpid(process.pid, 0)
 

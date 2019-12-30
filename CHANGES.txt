@@ -1,10 +1,17 @@
 Changelog
 =========
 
-1.0.0a4 (unreleased)
+1.0.0a6 (unreleased)
 --------------------
 
 - Nothing changed yet.
+
+
+1.0.0a4 (2019-12-23)
+--------------------
+
+- Use configured port in solr-forground
+  [csenger]
 
 
 1.0.0a3 (2019-03-23)

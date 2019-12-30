@@ -15,6 +15,7 @@
 /.Python
 /include
 /lib
+/lib64
 /.project
 /.pydevproject
 /.mr.developer.cfg
@@ -28,3 +29,5 @@ docs/html
 local/
 pip-selfcheck.json
 share/
+pyvenv.cfg
+.#*

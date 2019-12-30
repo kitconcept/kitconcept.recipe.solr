@@ -1,6 +1,6 @@
-setuptools==33.1.1
-zc.buildout==2.9.5
-zc.recipe.egg==2.0.3
+# Keep this file in sync with: https://github.com/kitconcept/buildout/edit/master/requirements.txt
+setuptools==41.0.1
+zc.buildout==2.13.2
 
 zest.releaser==6.19.0
 readme_renderer==24.0

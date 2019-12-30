@@ -1,5 +1,7 @@
 language: python
-python: "2.7.15"
+python:
+  - "2.7.15"
+  - "3.7"
 sudo: required
 cache:
   pip: true
@@ -10,13 +12,13 @@ env:
     - SOLR_VERSION=4.10.4
     - SOLR_VERSION=5.2.1
     - SOLR_VERSION=6.6.5
-    - SOLR_VERSION=7.2.1
-    - SOLR_VERSION=7.3.0
-    - SOLR_VERSION=7.4.0
-    - SOLR_VERSION=7.5.0
-    - SOLR_VERSION=7.6.0
-    - SOLR_VERSION=7.7.1
-    - SOLR_VERSION=8.0.0
+    # - SOLR_VERSION=7.2.1
+    # - SOLR_VERSION=7.3.0
+    # - SOLR_VERSION=7.4.0
+    # - SOLR_VERSION=7.5.0
+    # - SOLR_VERSION=7.6.0
+    - SOLR_VERSION=7.7.2
+    - SOLR_VERSION=8.4.0
 before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - virtualenv .

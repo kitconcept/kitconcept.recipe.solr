@@ -1,6 +1,6 @@
 # convenience makefile to boostrap & run buildout
 
-version = 2.7
+version = 3.7
 
 all: .installed.cfg
 	bin/test

@@ -2,7 +2,7 @@
 """
 Doctest runner for 'kitconcept.recipe.solr'.
 """
-__docformat__ = 'restructuredtext'
+__docformat__ = "restructuredtext"
 
 import unittest
 import doctest
@@ -11,28 +11,28 @@ import zc.buildout.testing
 
 from zope.testing import renormalizing
 
-optionflags = (doctest.ELLIPSIS |
-               doctest.NORMALIZE_WHITESPACE |
-               doctest.REPORT_ONLY_FIRST_FAILURE)
+optionflags = (
+    doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE | doctest.REPORT_ONLY_FIRST_FAILURE
+)
 
 
 def setUp(test):
     zc.buildout.testing.buildoutSetUp(test)
 
     # Install the recipe in develop mode
-    zc.buildout.testing.install_develop('kitconcept.recipe.solr', test)
+    zc.buildout.testing.install_develop("kitconcept.recipe.solr", test)
 
     # Install any other recipes that should be available in the tests
-    zc.buildout.testing.install('hexagonit.recipe.download', test)
-    zc.buildout.testing.install('zc.recipe.egg', test)
-    zc.buildout.testing.install('collective.recipe.template', test)
+    zc.buildout.testing.install("hexagonit.recipe.download", test)
+    zc.buildout.testing.install("zc.recipe.egg", test)
+    zc.buildout.testing.install("collective.recipe.template", test)
 
 
 def test_suite():
     suite = unittest.TestSuite(
         (
             doctest.DocFileSuite(
-                '../../../../README.rst',
+                "../../../../README.rst",
                 setUp=setUp,
                 tearDown=zc.buildout.testing.buildoutTearDown,
                 optionflags=optionflags,
@@ -45,13 +45,13 @@ def test_suite():
                         # second item, e.g.
                         # (re.compile('my-[rR]eg[eE]ps'), 'my-regexps')
                         zc.buildout.testing.normalize_path,
-                        ]
-                    ),
+                    ]
+                ),
             ),
         )
     )
     return suite
 
 
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')
+if __name__ == "__main__":
+    unittest.main(defaultTest="test_suite")

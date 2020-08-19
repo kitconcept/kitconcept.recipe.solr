@@ -145,7 +145,7 @@
     <!-- name:review_state           type:string stored:true -->
     <field name="review_state"          type="string"   indexed="true"  stored="true" />
     <!-- name:SearchableText         type:text copyfield:default stored:true -->
-    <field name="SearchableText"        type="text"     indexed="true"  stored="true" />
+    <field name="SearchableText"        type="text"     indexed="true"  stored="true" multiValued="true" />
     <!-- name:searchwords            type:string stored:true multivalued:true -->
     <field name="searchwords"           type="string"   indexed="true"  stored="true"  multiValued="true" />
     <!-- name:showinsearch           type:boolean stored:true -->

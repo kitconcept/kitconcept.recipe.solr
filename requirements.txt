@@ -19,6 +19,6 @@ tqdm==4.34.0
 requests_toolbelt==0.9.1
 pkginfo==1.5.0.1
 certifi==2019.6.16
-urllib3==1.25.3
+urllib3==1.25.8
 idna==2.8
 webencodings == 0.5.1

@@ -1,0 +1,47 @@
+name: Tests
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.9, 3.8, 3.7]
+        solr-version: [8.4.0]
+
+    steps:
+      # git checkout
+      - uses: actions/checkout@v2
+
+      # python setup
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # python cache
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # python install
+      - run: pip install virtualenv
+      - run: pip install wheel
+      - name: pip install
+        run: pip install -r requirements.txt
+
+      - run: sed -ie "s#7.4.0#$SOLR_VERSION#" buildout.cfg
+      - run: sed -ie "s#solr-7.4.0#solr-$SOLR_VERSION#" buildout.cfg
+
+      # buildout
+      - name: buildout
+        run: buildout
+        env:
+          CI: true
+
+      # test
+      - name: test
+        run: bin/test

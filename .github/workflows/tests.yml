@@ -6,8 +6,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.9, 3.8, 3.7]
-        solr-version: [8.4.0]
+        python-version: [3.8, 3.7]
+        solr-version: [8.4.0, 8.11.1]
 
     steps:
       # git checkout

@@ -1,8 +1,8 @@
 Introduction
 ============
 
-.. image:: https://travis-ci.org/kitconcept/kitconcept.recipe.solr.svg?branch=master
-    :target: https://travis-ci.org/kitconcept/kitconcept.recipe.solr
+.. image:: https://github.com/kitconcept/kitconcept.recipe.solr/actions/workflows/tests.yml/badge.svg
+    :target: https://github.com/kitconcept/kitconcept.recipe.solr/actions/workflows/tests.yml
 
 |
 

@@ -33,8 +33,8 @@ jobs:
       - name: pip install
         run: pip install -r requirements.txt
 
-      - run: sed -ie "s#7.4.0#$SOLR_VERSION#" buildout.cfg
-      - run: sed -ie "s#solr-7.4.0#solr-$SOLR_VERSION#" buildout.cfg
+      - run: sed -ie "s#7.4.0#${{ matrix.solr-version }}#" buildout.cfg
+      - run: sed -ie "s#solr-7.4.0#solr-${{ matrix.solr-version }}#" buildout.cfg
 
       # buildout
       - name: buildout
